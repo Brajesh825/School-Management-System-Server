@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes - P.N. Academy</title>
+    <link rel="stylesheet" href="../index.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="wrapper">
+            <div class="sidebar">
+                <div class="sidebar-top">
+                    <div class="small-logo">
+                        <img src="./images/school-logo.jpeg" alt="">
+                    </div>
+                    <h2 id="greetings-small">
+                        P.N Academy
+                    </h2>
+                </div>
+                <div class="sidebar-bottom">
+                    <div class="sidebar-btn-container ">
+                        <object data="./icons/dashboard.svg"></object>
+                        <a href="./adminDashboard.html" class="sidebar-option">Dashboard</a>
+                    </div>
+                    <div class="sidebar-btn-container active-btn ">
+                        <object data="./icons/class.svg"></object>
+                        <a href="./classes.html" class="sidebar-option">Classes</a>
+                    </div>
+                    <div class="sidebar-btn-container">
+                        <object data="./icons/students.svg"></object>
+                        <a href="./students.html" class="sidebar-option">Students</a>
+                    </div>
+                    <div class="sidebar-btn-container ">
+                        <object data="./icons/feeStructure.svg"></object>
+                        <a href="./feeStructure.html" class="sidebar-option">Fee Structure</a>
+                    </div>
+                    <div class="sidebar-btn-container">
+                        <object data="./icons/billing.svg"></object>
+                        <a href="./billing.html" class="sidebar-option">Billing</a>
+                    </div>
+                    <div class="sidebar-btn-container">
+                        <object data="./icons/setting.svg"></object>
+                        <a href="./settings.html" class="sidebar-option">Setting & Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="navbar dashboard-nav">
+                    <div class="dashboard-welcome">
+                    </div>
+                    <div class="dashboard-nav-btn-wrapper">
+                        <div class="logout-btn">
+                            <a href="">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="students-main">
+                    <div class="student-imports-bar">
+                        <div class="student-imports-title">
+                            <p>Classes</p>
+                        </div>
+                        <div class="student-imports-btns">
+                            <div class="export-csv-btn">
+                                <a href="">Export CSV</a>
+                            </div>
+                            <div class="add-students-btn">
+                                <a href="">Add Class</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="student-add">
+                        <h3>Add Classes</h3>
+                        <div class="add-students-options">
+                            <div class="manual-add-btn">
+                                <a href="">Manually</a>
+                            </div>
+                            <div class="csv-add-btn">
+                                <a href="">Import CSV</a>
+                            </div>
+                        </div>
+                        <div class="student-add-form-wrapper">
+                            <form action="" class="student-add-form">
+                                <div class="form-element">
+                                    <input name="name" type="text" placeholder="Enter Class Name" required>
+                                </div>
+                                <div class="form-element">
+                                    <button class="add-another-btn">Add Another</button>
+                                    <button class="add-one-btn">Add Class</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

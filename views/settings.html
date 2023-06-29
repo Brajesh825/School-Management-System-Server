@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings - P.N. Academy</title>
+    <link rel="stylesheet" href="../index.css">
+</head>
+<style>
+
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="sidebar">
+                <div class="sidebar-top">
+                    <div class="small-logo">
+                        <img src="./images/school-logo.jpeg" alt="">
+                    </div>
+                    <h2 id="greetings-small">
+                        P.N Academy
+                    </h2>
+                </div>
+                <div class="sidebar-bottom">
+                    <div class="sidebar-btn-container  ">
+                        <object data="./icons/dashboard.svg"></object>
+                        <a href="./adminDashboard.html" class="sidebar-option">Dashboard</a>
+                    </div>
+                    <div class="sidebar-btn-container  ">
+                        <object data="./icons/class.svg"></object>
+                        <a href="./classes.html" class="sidebar-option">Classes</a>
+                    </div>
+                    <div class="sidebar-btn-container  ">
+                        <object data="./icons/students.svg"></object>
+                        <a href="./students.html" class="sidebar-option">Students</a>
+                    </div>
+                    <div class="sidebar-btn-container  ">
+                        <object data="./icons/feeStructure.svg"></object>
+                        <a href="./feeStructure.html" class="sidebar-option">Fee Structure</a>
+                    </div>
+                    <div class="sidebar-btn-container">
+                        <object data="./icons/billing.svg"></object>
+                        <a href="./billing.html" class="sidebar-option">Billing</a>
+                    </div>
+                    <div class="sidebar-btn-container active-btn">
+                        <object data="./icons/setting.svg"></object>
+                        <a href="./settings.html" class="sidebar-option">Setting & Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="navbar dashboard-nav">
+                    <div class="dashboard-welcome">
+                    </div>
+                    <div class="dashboard-nav-btn-wrapper">
+                        <div class="logout-btn">
+                            <a href="">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fee-structure-main">
+                    <div class="fee-structure-slider">
+                        <a href="./settings.html" class="active-slider">Account Setting</a>
+                        <a href="./login&security.html">Login & Security</a>
+                        <a href="./role&permission.html">Role & Permission</a>
+                    </div>
+                    <div class="account-setting-form">
+                        <form>
+                            <div class="profile-picture-selector">
+                                <span>Your Profile Picture</span>
+                                <label for="upload-button" class="custom-button">
+                                    <img src="./icons/uploadPhoto.svg" alt="Upload Icon">
+                                    <input id="upload-button" name="profile-pic" type="file">
+                                    <span>Upload Your Photo</span>
+                                </label>
+                            </div>
+                            <div class="profile-data">
+                                <div class="form-element">
+                                    <label for="FullName">
+                                        <span>Full Name</span>
+                                        <input name="name" type="text" placeholder="Enter Your Name" required>
+                                    </label>
+                                    <label for="Email">
+                                        <span>Email</span>
+                                        <input name="email" type="text" placeholder="Enter Your Email" required>
+                                    </label>
+                                </div>
+                                <div class="form-element">
+                                    <label for="PhoneNumber">
+                                        <span>Phone Number</span>
+                                        <input name="mobile" type="text" placeholder="Enter Your Phone Number" required>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="profile-submit-btn">
+                                <button type="submit">
+                                    Update Profile
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

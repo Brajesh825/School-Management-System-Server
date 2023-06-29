@@ -1,0 +1,3 @@
+class AuthControllerAuthority {}
+
+export { AuthControllerAuthority };

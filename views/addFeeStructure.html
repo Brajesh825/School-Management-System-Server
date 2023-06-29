@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Fee Structure - P.N. Academy</title>
+    <link rel="stylesheet" href="../index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="sidebar">
+                <div class="sidebar-top">
+                    <div class="small-logo">
+                        <img src="./images/school-logo.jpeg" alt="">
+                    </div>
+                    <h2 id="greetings-small">
+                        P.N Academy
+                    </h2>
+                </div>
+                <div class="sidebar-bottom">
+                    <div class="sidebar-btn-container  ">
+                        <object data="./icons/dashboard.svg"></object>
+                        <a href="./adminDashboard.html" class="sidebar-option">Dashboard</a>
+                    </div>
+                    <div class="sidebar-btn-container  ">
+                        <object data="./icons/class.svg"></object>
+                        <a href="./classes.html" class="sidebar-option">Classes</a>
+                    </div>
+                    <div class="sidebar-btn-container  ">
+                        <object data="./icons/students.svg"></object>
+                        <a href="./students.html" class="sidebar-option">Students</a>
+                    </div>
+                    <div class="sidebar-btn-container active-btn ">
+                        <object data="./icons/feeStructure.svg"></object>
+                        <a href="./feeStructure.html" class="sidebar-option">Fee Structure</a>
+                    </div>
+                    <div class="sidebar-btn-container">
+                        <object data="./icons/billing.svg"></object>
+                        <a href="./billing.html" class="sidebar-option">Billing</a>
+                    </div>
+                    <div class="sidebar-btn-container">
+                        <object data="./icons/setting.svg"></object>
+                        <a href="./settings.html" class="sidebar-option">Setting & Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="navbar dashboard-nav">
+                    <div class="dashboard-welcome">
+                    </div>
+                    <div class="dashboard-nav-btn-wrapper">
+                        <div class="logout-btn">
+                            <a href="">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fee-structure-main">
+                    <div class="fee-structure-slider">
+                        <a href="./feeStructure.html">Fee Structure</a>
+                        <a href="./addFeeStructure.html" class="active-slider">New Fee Structure</a>
+                    </div>
+                    <div class="student-add">
+                        <h3>Add Fee Structure</h3>
+                        <div class="add-students-options">
+                            <div class="manual-add-btn">
+                                <a href="">Manually</a>
+                            </div>
+                            <div class="csv-add-btn">
+                                <a href="">Import CSV</a>
+                            </div>
+                        </div>
+                        <div class="fee-add-form-wrapper">
+                            <form action="" class="fee-add-form">
+                                <div class="form-element">
+                                    <select name="class" required>
+                                        <option value="" disabled selected hidden>Please Choose any class</option>
+                                        <option value="class1">Class 1</option>
+                                        <option value="class2">Class 2</option>
+                                        <option value="class3">Class 3</option>
+                                        <option value="class4">Class 4</option>
+                                        <option value="class5">Class 5</option>
+                                    </select>
+                                    <select name="year" required>
+                                        <option value="" disabled selected hidden>Please Choose Year</option>
+                                        <option value="20023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                    </select>
+                                    <select name="month" required>
+                                        <option value="" disabled selected hidden>Please Choose Month</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                    </select>
+                                </div>
+                                <div class="form-element">
+                                    <input type="text" name="libraryFee" placeholder="Library Fee">
+                                    <input type="text" name="tutionFee" placeholder="Tution Fee">
+                                </div>
+                                <div class="form-element">
+                                    <input type="text" name="hostelFee" placeholder="Hostel Fee">
+                                    <input type="text" name="transportFee" placeholder="Transport Fee">
+                                </div>
+                                <div class="form-element">
+                                    <button class="add-another-btn">Add Another</button>
+                                    <button class="add-one-btn">Add Fee Structure</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

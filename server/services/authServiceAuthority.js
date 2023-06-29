@@ -1,0 +1,3 @@
+class AuthServiceAuthority {}
+
+export { AuthServiceAuthority };

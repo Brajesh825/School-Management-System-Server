@@ -1,16 +1,29 @@
 import React from "react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+
+import Error from "./error";
 
 import AdminLayout from "./components/layout/adminLayout";
 import StudentLayout from "./components/layout/studentLayout";
 
+// main wrappers
+import AdminDashboard from "./components/admin/dashboard";
+import Class from "./components/admin/class";
+
+// Sub Wrappers
+import ClassList from "./components/admin/classList";
+import AddClass from "./components/admin/addClass";
+
 const router = createBrowserRouter([
   {
     path: "/student",
+    errorElement: <Error />,
     element: <StudentLayout />,
     children: [
+      {
+        path: "",
+      },
       {
         path: "dashboard",
       },
@@ -28,12 +41,25 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <AdminDashboard />,
       },
       {
         path: "dashboard",
+        element: <AdminDashboard />,
       },
       {
         path: "class",
+        element: <Class />,
+        children: [
+          {
+            path: "",
+            element: <ClassList />,
+          },
+          {
+            path: "add",
+            element: <AddClass />,
+          },
+        ],
       },
       {
         path: "student",

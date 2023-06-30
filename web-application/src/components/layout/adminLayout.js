@@ -15,6 +15,7 @@ const AdminLayout = () => {
           <AdminSidebar />
           <div className="main">
             <Navbar />
+            <Outlet />
           </div>
         </div>
       </div>

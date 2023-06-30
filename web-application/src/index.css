@@ -361,13 +361,12 @@ a {
   color: white;
 }
 
-.student-list,
-.transaction-list {
+.list{
   margin: 2rem;
   display: flex;
 }
 
-.student-filter-wrapper {
+.filter-wrapper {
   margin-left: 3rem;
   margin-top: 1rem;
 }
@@ -393,8 +392,8 @@ a {
   width: 100%;
 }
 
-.student-table,
-.transaction-table {
+
+.table {
   border-collapse: collapse;
   width: 100%;
   flex: 3;

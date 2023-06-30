@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AdminSidebar = () => {
   const pathname = window.location.pathname;
   let paths = pathname.split("/");
-  let activeOption = paths[paths.length - 1];
+  let activeOption = paths[2] || "dashboard";
 
   return (
     <>

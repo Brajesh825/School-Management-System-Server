@@ -1,6 +1,5 @@
 import React from "react";
 
-import { useEffect } from "react";
 
 const ClassTable = (props) => {
   const { getAllClass, myClass } = props;

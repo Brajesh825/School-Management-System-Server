@@ -10,10 +10,13 @@ import StudentLayout from "./components/layout/studentLayout";
 // main wrappers
 import AdminDashboard from "./components/admin/dashboard";
 import Class from "./components/admin/class";
+import Student from "./components/admin/strudent";
 
-// Sub Wrappers
+// sub Wrappers
 import ClassList from "./components/admin/classList";
+import StudentList from "./components/admin/studentList";
 import AddClass from "./components/admin/addClass";
+import AddStudent from "./components/admin/addStudent";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +66,17 @@ const router = createBrowserRouter([
       },
       {
         path: "student",
+        element: <Student />,
+        children: [
+          {
+            path: "",
+            element: <StudentList />,
+          },
+          {
+            path: "add",
+            element: <AddStudent />,
+          },
+        ],
       },
       {
         path: "fee",

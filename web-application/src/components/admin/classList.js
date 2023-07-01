@@ -1,7 +1,7 @@
 import React from "react";
 
 import SearchBar from "../searchBar/searchBar";
-import StudentTable from "../table/classTable";
+import ClassTable from "../table/classTable";
 import SubtitleBar from "../subtitleBar/subtitleBar";
 
 import { useOutletContext } from "react-router-dom";
@@ -14,7 +14,7 @@ const ClassList = () => {
       <SubtitleBar />
       <div class="entity-list-wrapper">
         <SearchBar />
-        <StudentTable getAllClass={getAllClass} myClass={myClass} />
+        <ClassTable getAllClass={getAllClass} myClass={myClass} />
       </div>
     </>
   );

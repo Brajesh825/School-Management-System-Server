@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 
 import { useState } from "react";
@@ -16,9 +15,11 @@ const Class = () => {
     return myClass || [{}];
   };
 
+  const allClasses = getAllClass();
+
   return (
     <div class="entity-main">
-      <Outlet context={{ addClass, getAllClass , myClass }} />
+      <Outlet context={{ addClass, allClasses }} />
     </div>
   );
 };

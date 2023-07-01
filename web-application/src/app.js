@@ -8,15 +8,15 @@ import AdminLayout from "./components/layout/adminLayout";
 import StudentLayout from "./components/layout/studentLayout";
 
 // main wrappers
-import AdminDashboard from "./components/admin/dashboard";
-import Class from "./components/admin/class";
-import Student from "./components/admin/strudent";
+import AdminDashboard from "./components/admin/dashboard/dashboard";
+import Class from "./components/admin/class/class";
+import Student from "./components/admin/student/strudent";
 
 // sub Wrappers
-import ClassList from "./components/admin/classList";
-import StudentList from "./components/admin/studentList";
-import AddClass from "./components/admin/addClass";
-import AddStudent from "./components/admin/addStudent";
+import ClassList from "./components/admin/class/classList";
+import StudentList from "./components/admin/student/studentList";
+import AddClass from "./components/admin/class/addClass";
+import AddStudent from "./components/admin/student/addStudent";
 
 const router = createBrowserRouter([
   {
@@ -78,15 +78,15 @@ const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: "fee",
-      },
-      {
-        path: "billing",
-      },
-      {
-        path: "setting",
-      },
+      // {
+      //   path: "fee",
+      // },
+      // {
+      //   path: "billing",
+      // },
+      // {
+      //   path: "setting",
+      // },
     ],
   },
 ]);

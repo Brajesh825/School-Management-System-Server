@@ -1,9 +1,13 @@
 import { useState } from "react";
 import StudentListView from "./studentListView";
+import StudentProfile from "./studentProfile";
 
 const StudentTable = ({ allStudents }) => {
   const [searchField, setSearchField] = useState("");
   const [searchShow, setSearchShow] = useState(false);
+
+  const [activeStudent, setActiveStudent] = useState({});
+  const [activeStudentShow, setActiveStudentShow] = useState("");
 
   const filteredPersons = allStudents.filter((person) => {
     return (
@@ -26,11 +30,37 @@ const StudentTable = ({ allStudents }) => {
 
   function searchList() {
     if (searchShow) {
-      return <StudentListView filteredStudents={filteredPersons} />;
+      return (
+        <StudentListView
+          filteredStudents={filteredPersons}
+          handleActiveStudent={handleActiveStudent}
+        />
+      );
     } else {
-      return <StudentListView filteredStudents={allStudents} />;
+      return (
+        <StudentListView
+          filteredStudents={allStudents}
+          handleActiveStudent={handleActiveStudent}
+        />
+      );
     }
   }
+
+  function activeStudentView() {
+    if (activeStudentShow) {
+      return <StudentProfile student={activeStudent} />;
+    } 
+  }
+
+  const handleActiveStudent = (e) => {
+    let studentID = e.target.parentNode.getAttribute("id");
+    let students = allStudents.filter(
+      (student) => student.studentID == studentID
+    );
+    let currStudent = students[0];
+    setActiveStudent(currStudent);
+    setActiveStudentShow(true)
+  };
 
   return (
     <>
@@ -60,6 +90,7 @@ const StudentTable = ({ allStudents }) => {
             <tbody>{searchList()}</tbody>
           </table>
         </div>
+        {activeStudentView()}
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StudentSubtitleBar = () => {
+const ClassSubtitleBar = () => {
   return (
     <div className="student-imports-bar">
       <div className="student-imports-title">
@@ -12,11 +12,11 @@ const StudentSubtitleBar = () => {
           <Link>Export CSV</Link>
         </div>
         <div className="add-students-btn">
-          <Link to={"/admin/student/add"}>Add Students</Link>
+          <Link to={"/admin/class/add"}>Add Class</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default StudentSubtitleBar;
+export default ClassSubtitleBar;

@@ -49,7 +49,7 @@ const StudentTable = ({ allStudents }) => {
   function activeStudentView() {
     if (activeStudentShow) {
       return <StudentProfile student={activeStudent} />;
-    } 
+    }
   }
 
   const handleActiveStudent = (e) => {
@@ -59,7 +59,7 @@ const StudentTable = ({ allStudents }) => {
     );
     let currStudent = students[0];
     setActiveStudent(currStudent);
-    setActiveStudentShow(true)
+    setActiveStudentShow(true);
   };
 
   return (

@@ -6,7 +6,7 @@ const ClassListView = ({ filteredClasses }) => {
   return (
     <>
       {filteredClasses.map((student, index) => (
-        <ClassRow key={Math.random()} student={student} />
+        <ClassRow key={Math.random()} myClass={student} />
       ))}
     </>
   );

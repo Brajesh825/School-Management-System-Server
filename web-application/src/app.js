@@ -11,12 +11,16 @@ import StudentLayout from "./components/layout/studentLayout";
 import AdminDashboard from "./components/admin/dashboard/dashboard";
 import Class from "./components/admin/class/class";
 import Student from "./components/admin/student/strudent";
+import Transaction from "./components/admin/transaction/transaction";
 
 // sub Wrappers
 import ClassList from "./components/admin/class/classList";
 import StudentList from "./components/admin/student/studentList";
+import TransactionList from "./components/admin/transaction/transactionList";
+
 import AddClass from "./components/admin/class/addClass";
 import AddStudent from "./components/admin/student/addStudent";
+import AddTransaction from "./components/admin/transaction/addTransaction";
 
 const router = createBrowserRouter([
   {
@@ -78,9 +82,20 @@ const router = createBrowserRouter([
           },
         ],
       },
-      // {
-      //   path: "fee",
-      // },
+      {
+        path: "billing",
+        element: <Transaction />,
+        children: [
+          {
+            path: "",
+            element: <TransactionList />,
+          },
+          {
+            path: "add",
+            element: <AddTransaction />,
+          },
+        ],
+      },
       // {
       //   path: "billing",
       // },

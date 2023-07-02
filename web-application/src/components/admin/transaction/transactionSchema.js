@@ -1,5 +1,5 @@
 const transactionSchema = {
-    _id : "ObjectID",
+  _id: "ObjectID",
   studentID: "String",
   class: "String",
   year: "String",

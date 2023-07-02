@@ -12,6 +12,7 @@ import AdminDashboard from "./components/admin/dashboard/dashboard";
 import Class from "./components/admin/class/class";
 import Student from "./components/admin/student/strudent";
 import Transaction from "./components/admin/transaction/transaction";
+import FeeStructure from "./components/admin/feeStructure/feeStructure";
 
 // sub Wrappers
 import ClassList from "./components/admin/class/classList";
@@ -96,9 +97,10 @@ const router = createBrowserRouter([
           },
         ],
       },
-      // {
-      //   path: "billing",
-      // },
+      {
+        path: "fee",
+        element: <FeeStructure/>
+      },
       // {
       //   path: "setting",
       // },

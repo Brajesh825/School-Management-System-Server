@@ -1,3 +1,0 @@
-class AuthControllerAuthority {}
-
-export { AuthControllerAuthority };

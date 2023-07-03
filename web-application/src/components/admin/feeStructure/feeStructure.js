@@ -3,10 +3,10 @@ import FeeStructureTable from "./feeStructureTable";
 import AddFeeStructure from "./addFeeStructure";
 
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const FeeStructure = () => {
   const [slider, setSlider] = useState("list");
-
   const [feeStructure, setFeeStructure] = useState([]);
 
   // Slider
@@ -41,7 +41,7 @@ const FeeStructure = () => {
               activeSlider={activeSlider}
               changeSlider={changeSlider}
             />
-            <FeeStructureTable feeStructures={allFeeStructures} />
+            <FeeStructureTable allfeeStructures={allFeeStructures} />
           </>
         );
         break;
@@ -53,7 +53,7 @@ const FeeStructure = () => {
               activeSlider={activeSlider}
               changeSlider={changeSlider}
             />
-            <AddFeeStructure addFeeStructure={addFeeStructure} />
+            <AddFeeStructure addFeeStructure={addFeeStructure} changeSlider={setSlider} />
           </>
         );
         break;

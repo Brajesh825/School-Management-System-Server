@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import { ObjectId } from "mongoose";
 import { Authority } from "./authority.js";
 
 const studentSchema = mongoose.Schema(

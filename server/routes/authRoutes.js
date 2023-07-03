@@ -1,15 +1,11 @@
 import express from "express";
 
-import { AuthControllerStudents } from "../controllers/authControllerStudents";
-import { AuthControllerAuthority } from "../controllers/authControllerAuthority";
-
 const router = express.Router();
 
 // Login As Student
 router.post("/api/v1/login/student");
 
 // Change Password
-
 
 // Login As Authority
 router.post("/api/v1/login/authority");

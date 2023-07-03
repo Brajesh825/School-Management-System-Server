@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-const AddFeeStructure = ({ AddFeeStructure }) => {
+import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
+
+
+const AddFeeStructure = ({ addFeeStructure , changeSlider }) => {
+  const navigate = useNavigate();
+
+  const [errors, setErrorMessage] = useState([]);
+
   const [myclass, setClass] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
@@ -24,24 +31,72 @@ const AddFeeStructure = ({ AddFeeStructure }) => {
   };
   const setMyLibraryFee = (e) => {
     let data = e.target.value;
-    setLibraryFee(data);
+    if (data < 0) {
+      setErrorMessage(`Library Fee can not be Negative`);
+      setLibraryFee("");
+    } else {
+      setLibraryFee(data);
+    }
   };
   const setMyTutionFee = (e) => {
     let data = e.target.value;
-    setTutionFee(data);
+    if (data < 0) {
+      setErrorMessage(`Tution Fee can not be Negative`);
+      setTutionFee("");
+    } else {
+      setTutionFee(data);
+    }
   };
   const setMyTransportFee = (e) => {
     let data = e.target.value;
-    setTransportFee(data);
+    if (data < 0) {
+      setErrorMessage(`Transport Fee can not be Negative`);
+      setTransportFee("");
+    } else {
+      setTransportFee(data);
+    }
   };
 
   const setMyHostelFee = (e) => {
     let data = e.target.value;
-    setHostelFee(data);
+    if (data < 0) {
+      setErrorMessage(`Hostel Fee can not be Negative`);
+      setHostelFee("");
+    } else {
+      setHostelFee(data);
+    }
+  };
+
+  const validateRequired = (data) => {
+    setErrorMessage("");
+    for (const key in data) {
+      if (data[key] == "") {
+        setErrorMessage(`${key} can not be Empty`);
+        return false;
+      }
+    }
+    return true;
   };
 
   // handling Form
-  const submitForm = (e) => {};
+  const submitForm = (e) => {
+    let data = {
+      class: myclass,
+      month,
+      year,
+      libraryFee,
+      tutionFee,
+      hostelFee,
+      transportFee,
+    };
+
+    let isValidatedRequired = validateRequired(data);
+    if (isValidatedRequired) {
+      addFeeStructure(data);
+      changeSlider("list")
+      return;
+    }
+  };
 
   return (
     <>
@@ -57,6 +112,7 @@ const AddFeeStructure = ({ AddFeeStructure }) => {
         </div>
         <div className="fee-add-form-wrapper">
           <form className="fee-add-form">
+            <span> {errors} </span>
             <div className="form-element">
               <select name="class" onChange={setMyClass} required>
                 <option value="" disabled selected hidden>
@@ -128,9 +184,9 @@ const AddFeeStructure = ({ AddFeeStructure }) => {
               ></input>
             </div>
             <div className="form-element">
-              <button onChange={submitForm} className="add-one-btn">
+              <a onClick={submitForm} className="btn add-one-btn">
                 Add Fee Structure
-              </button>
+              </a>
             </div>
           </form>
         </div>

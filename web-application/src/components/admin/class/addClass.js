@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from "react";
 
 const AddClass = (data) => {
+  const [error,setError] = useState("")
+
   const { addClass } = useOutletContext();
   const navigate = useNavigate();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
     var object = {};
@@ -13,9 +16,13 @@ const AddClass = (data) => {
       object[key] = value;
     });
     object.noOfStudents = 0;
-    addClass(object);
+    let response = await addClass(object);
 
-    navigate("/admin/class");
+    if (response.success == "true") {
+      navigate("/admin/class");
+    }else {
+      setError(response.message)
+    }
   };
 
   return (
@@ -31,6 +38,7 @@ const AddClass = (data) => {
       </div>
       <div class="student-add-form-wrapper">
         <form class="student-add-form" onSubmit={submitForm}>
+          <span>{error}</span>
           <div class="form-element">
             <input
               name="className"

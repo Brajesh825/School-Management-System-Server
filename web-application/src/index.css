@@ -361,7 +361,7 @@ a {
   color: white;
 }
 
-.list{
+.list {
   margin: 2rem;
   display: flex;
 }
@@ -391,7 +391,6 @@ a {
   border: none;
   width: 100%;
 }
-
 
 .table {
   border-collapse: collapse;
@@ -779,10 +778,9 @@ th {
   height: 2.75rem;
   border-radius: 0.5rem;
   text-align: center;
-  background-color : rgb(213, 213, 226);
+  background-color: rgb(213, 213, 226);
   color: black;
   font-size: 1.25rem;
-
 }
 
 .transaction-form .form-wrapper input {
@@ -815,7 +813,7 @@ th {
   margin-top: 3rem;
 }
 .pay-now-btn {
-  background-color: #772b30;
+  background-color: #672025;
   border: 1px solid pink;
   border-radius: 0.5rem;
   color: #ddd;
@@ -823,4 +821,14 @@ th {
   font-weight: bold;
   width: 120px;
   height: 2.75rem;
+}
+
+.add-one-btn {
+  background-color: rgb(236, 74, 74);
+  border-radius: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border: 1px solid rgb(220, 184, 184);
+  font-size: 1.125rem;
+  color: white;
+  cursor: pointer;
 }

@@ -1,15 +1,17 @@
-const StudentRow = ({ student, handleActiveStudent, id }) => {
+const FeeRow = ({ feeStructure, id }) => {
     return (
-      <tr id={student.studentID} onClick={handleActiveStudent}>
+      <tr id={id}>
         <td>{id}</td>
-        <td> {student.name} </td>
-        <td> {student.studentID} </td>
-        <td> {student.email} </td>
-        <td> {student.class} </td>
-        <td> {student.gender} </td>
+        <td> {feeStructure.class} </td>
+        <td> {feeStructure.year} </td>
+        <td> {feeStructure.month} </td>
+        <td> {feeStructure.tutionFee} </td>
+        <td> {feeStructure.transportFee} </td>
+        <td> {feeStructure.libraryFee} </td>
+        <td> {feeStructure.hostelFee} </td>
       </tr>
     );
   };
   
-  export default StudentRow;
+  export default FeeRow;
   

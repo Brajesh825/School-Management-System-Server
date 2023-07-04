@@ -1,0 +1,35 @@
+import { StudentService } from "../services/studentService.js";
+
+const studentService = new StudentService();
+
+class StudentController {
+  constructor() {}
+
+  uploadStudentCSV() {}
+
+  addStudent = async (req, res) => {
+    let data = req.body;
+    var dateParts = data.dob.split("/");
+    data.dob = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+
+    let student = await studentService.addStudent(data);
+    if (!student) {
+      return res.status(400).json({
+        success: "false",
+        message: "class already exist",
+      });
+    }
+    res.status(200).json({
+      success: "true",
+      message: "Student Successfully Added",
+      student: student,
+    });
+  };
+
+  getAllStudent = async (req, res) => {
+    let students = await studentService.getAllStudent();
+    res.status(200).json(students);
+  };
+}
+
+export { StudentController };

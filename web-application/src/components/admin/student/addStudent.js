@@ -1,19 +1,27 @@
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import ClassDropDown from "./classDropDown";
 
 const AddStudent = (data) => {
+  const [error, setError] = useState("");
   const { addStudent } = useOutletContext();
   const navigate = useNavigate();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
     var object = {};
     formData.forEach(function (value, key) {
       object[key] = value;
     });
-    addStudent(object);
-    navigate("/admin/student");
+    object.noOfStudents = 0;
+    let response = await addStudent(object);
+    if (response.success == "true") {
+      navigate("/admin/student");
+    } else {
+      setError(response.message);
+    }
   };
 
   return (
@@ -29,6 +37,7 @@ const AddStudent = (data) => {
       </div>
       <div class="student-add-form-wrapper">
         <form action="" onSubmit={submitForm} class="student-add-form">
+          <span>{error}</span>
           <div class="form-element">
             <input
               name="name"
@@ -43,13 +52,7 @@ const AddStudent = (data) => {
             ></input>
           </div>
           <div class="form-element">
-            <select name="class" required>
-              <option value="class1">Class 1</option>
-              <option value="class2">Class 2</option>
-              <option value="class3">Class 3</option>
-              <option value="class4">Class 4</option>
-              <option value="class5">Class 5</option>
-            </select>
+            <ClassDropDown />
             <select name="gender" required>
               <option value="male">Male</option>
               <option value="female">Female</option>

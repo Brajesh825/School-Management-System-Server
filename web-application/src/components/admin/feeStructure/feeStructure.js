@@ -3,7 +3,7 @@ import FeeStructureTable from "./feeStructureTable";
 import AddFeeStructure from "./addFeeStructure";
 
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const FeeStructure = () => {
   const [slider, setSlider] = useState("list");
@@ -19,11 +19,34 @@ const FeeStructure = () => {
     return slider;
   };
 
+  useEffect(() => {
+    // Fetch All Fee Structure
+    fetch("http://localhost:4000/api/v1/feeStructure")
+      .then((myFeeStructure) => myFeeStructure.json())
+      .then((data) => setFeeStructure(data));
+  }, []);
+
   // Fee Structure
-  const addFeeStructure = (data) => {
-    setFeeStructure((previousState) => {
-      return [...previousState, data];
+  const addFeeStructure = async (data) => {
+    // Caching the data
+    let myClass = data.class;
+    data.class = data.class._id;
+    let response = await fetch("http://localhost:4000/api/v1/feeStructure", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
     });
+    let feeStructure = await response.json();
+
+    if (feeStructure.success == "true") {
+      setFeeStructure((previousState) => {
+        feeStructure.feeStructure.class = myClass;
+        return [...previousState, feeStructure.feeStructure];
+      });
+    }
+    return feeStructure;
   };
 
   const getAllFeeStructures = () => {
@@ -53,7 +76,10 @@ const FeeStructure = () => {
               activeSlider={activeSlider}
               changeSlider={changeSlider}
             />
-            <AddFeeStructure addFeeStructure={addFeeStructure} changeSlider={setSlider} />
+            <AddFeeStructure
+              addFeeStructure={addFeeStructure}
+              changeSlider={setSlider}
+            />
           </>
         );
         break;

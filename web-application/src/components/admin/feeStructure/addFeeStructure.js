@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import ClassDropDown from "./classDropDown";
+import MonthDropDown from "./monthDropDown";
+import YearDropDown from "./yearDropDown";
 
-
-const AddFeeStructure = ({ addFeeStructure , changeSlider }) => {
+const AddFeeStructure = ({ addFeeStructure, changeSlider }) => {
   const navigate = useNavigate();
 
   const [errors, setErrorMessage] = useState([]);
@@ -79,7 +81,7 @@ const AddFeeStructure = ({ addFeeStructure , changeSlider }) => {
   };
 
   // handling Form
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     let data = {
       class: myclass,
       month,
@@ -92,9 +94,12 @@ const AddFeeStructure = ({ addFeeStructure , changeSlider }) => {
 
     let isValidatedRequired = validateRequired(data);
     if (isValidatedRequired) {
-      addFeeStructure(data);
-      changeSlider("list")
-      return;
+      let response = await addFeeStructure(data);
+      if (response.success == "true") {
+        changeSlider("list");
+      } else {
+        setErrorMessage(response.message);
+      }
     }
   };
 
@@ -114,46 +119,9 @@ const AddFeeStructure = ({ addFeeStructure , changeSlider }) => {
           <form className="fee-add-form">
             <span> {errors} </span>
             <div className="form-element">
-              <select name="class" onChange={setMyClass} required>
-                <option value="" disabled selected hidden>
-                  Please Choose any class
-                </option>
-                <option value="class1">Class 1</option>
-                <option value="class2">Class 2</option>
-                <option value="class3">Class 3</option>
-                <option value="class4">Class 4</option>
-                <option value="class5">Class 5</option>
-                <option value="class5">Class 6</option>
-                <option value="class5">Class 7</option>
-                <option value="class5">Class 8</option>
-                <option value="class5">Class 9</option>
-                <option value="class5">Class 10</option>
-              </select>
-              <select name="year" onChange={setMyYear} required>
-                <option value="" disabled selected hidden>
-                  Please Choose Year
-                </option>
-                <option value="20023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-              </select>
-              <select name="month" onChange={setMyMonth} required>
-                <option value="" disabled selected hidden>
-                  Please Choose Month
-                </option>
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
+              <ClassDropDown setClass={setClass} />
+              <YearDropDown setYear={setYear} />
+              <MonthDropDown setMonth={setMonth} />
             </div>
             <div className="form-element">
               <input

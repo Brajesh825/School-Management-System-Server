@@ -2,10 +2,9 @@ import React from "react";
 
 import AsyncSelect from "react-select/async";
 
-import { useEffect } from "react";
 import { useState } from "react";
 
-const ClassDropDown = () => {
+const ClassDropDown = ({ setClass }) => {
   const [items, setItems] = useState([]);
   const [inputValue, setValue] = useState("");
   const [selectedValue, setSelectedValue] = useState(null);
@@ -17,6 +16,9 @@ const ClassDropDown = () => {
 
   const handleChange = (value) => {
     setSelectedValue(value);
+    if (setClass) {
+      setClass(value);
+    }
   };
 
   const fetchClass = (key) => {
@@ -37,7 +39,7 @@ const ClassDropDown = () => {
       cacheOptions={items}
       loadOptions={fetchClass}
       getOptionLabel={(e) => e.className}
-      getOptionValue={(e) => e.className}
+      getOptionValue={(e) => e._id}
       value={selectedValue}
       defaultOptions={items}
       onInputChange={handleInputChange}

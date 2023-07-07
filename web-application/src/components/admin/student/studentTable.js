@@ -5,10 +5,8 @@ import StudentProfile from "./studentProfile";
 const StudentTable = ({ allStudents }) => {
   const [searchField, setSearchField] = useState("");
   const [searchShow, setSearchShow] = useState(false);
-
   const [activeStudent, setActiveStudent] = useState({});
   const [activeStudentShow, setActiveStudentShow] = useState("");
-
   const filteredPersons = allStudents.filter((person) => {
     return (
       person.name.toLowerCase().includes(searchField.toLowerCase()) ||
@@ -45,7 +43,6 @@ const StudentTable = ({ allStudents }) => {
       );
     }
   }
-
   function activeStudentView() {
     if (activeStudentShow) {
       return <StudentProfile student={activeStudent} />;
@@ -61,7 +58,6 @@ const StudentTable = ({ allStudents }) => {
     setActiveStudent(currStudent);
     setActiveStudentShow(true);
   };
-
   return (
     <>
       <div className="filter-wrapper">

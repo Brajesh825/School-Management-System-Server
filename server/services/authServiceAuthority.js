@@ -1,3 +1,0 @@
-class AuthServiceAuthority {}
-
-export { AuthServiceAuthority };

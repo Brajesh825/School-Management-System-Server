@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
+
 import ClassDropDown from "./classDropDown";
+import GenderDropDown from "./genderDropDown";
 
 const AddStudent = (data) => {
   const [error, setError] = useState("");
@@ -53,11 +55,7 @@ const AddStudent = (data) => {
           </div>
           <div class="form-element">
             <ClassDropDown />
-            <select name="gender" required>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
+            <GenderDropDown />
             <input
               type="text"
               name="dob"
@@ -65,18 +63,7 @@ const AddStudent = (data) => {
               required
             ></input>
           </div>
-          <div class="form-element">
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter Your Password"
-            ></input>
-            <input
-              type="text"
-              name="studentID"
-              placeholder="Enter Your Student Id"
-            ></input>
-          </div>
+          <div class="form-element"></div>
           <div class="form-element">
             <button class="add-one-btn" type="submit">
               Add Student

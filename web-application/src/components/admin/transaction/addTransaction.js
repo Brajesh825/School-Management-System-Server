@@ -1,6 +1,8 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from "react";
 
 const AddTransaction = () => {
+  const [error, setError] = useState("");
   const { addTransaction } = useOutletContext();
   const navigate = useNavigate();
 
@@ -11,8 +13,12 @@ const AddTransaction = () => {
     formData.forEach(function (value, key) {
       object[key] = value;
     });
-    addTransaction(object);
-    navigate("/admin/billing");
+    let response = addTransaction(object);
+    if (response.success == "true") {
+      navigate("/admin/billing");
+    } else {
+      setError(response.message);
+    }
   };
 
   return (
@@ -20,6 +26,7 @@ const AddTransaction = () => {
       <h3>Add Transactions</h3>
       <div class="transaction-add-form-wrapper">
         <form action="" class="transaction-add-form" onSubmit={submitForm}>
+          <span>{error}</span>
           <div class="form-element">
             <input
               name="studentID"
@@ -64,16 +71,12 @@ const AddTransaction = () => {
             ></input>
             <input
               type="email"
-              name="studentId"
+              name="email"
               placeholder="Enter Student Email Address"
             ></input>
           </div>
           <div class="form-element">
-            <input
-              type="txt"
-              name="amount"
-              placeholder="Enter Amount"
-            ></input>
+            <input type="txt" name="amount" placeholder="Enter Amount"></input>
             <select name="transactionType" required>
               <option value="" disabled selected hidden>
                 Mode

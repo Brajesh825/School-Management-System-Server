@@ -1,23 +1,27 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
+import ClassDropDown from "./classDropDown";
+import YearDropDown from "./yearDropDown";
+import MonthDropDown from "./monthDropDown";
 
 const AddTransaction = () => {
   const [error, setError] = useState("");
   const { addTransaction } = useOutletContext();
   const navigate = useNavigate();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
     var object = {};
     formData.forEach(function (value, key) {
       object[key] = value;
     });
-    let response = addTransaction(object);
-    if (response.success == "true") {
-      navigate("/admin/billing");
+    let order = await addTransaction(object);
+    console.log(order);
+    if (order.success == "true") {
+      window.location.reload()
     } else {
-      setError(response.message);
+      setError(order.message);
     }
   };
 
@@ -36,32 +40,9 @@ const AddTransaction = () => {
             ></input>
           </div>
           <div class="form-element">
-            <select name="class" required>
-              <option value="" disabled selected hidden>
-                Class
-              </option>
-              <option value="class 1">Class 1</option>
-              <option value="class 2">Class 2</option>
-              <option value="class 3">Class 3</option>
-              <option value="class 4">Class 4</option>
-              <option value="class 5">Class 5</option>
-            </select>
-            <select name="year" required>
-              <option value="" disabled selected hidden>
-                Year
-              </option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-            </select>
-            <select name="month" required>
-              <option value="" disabled selected hidden>
-                Month
-              </option>
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-            </select>
+            <ClassDropDown />
+            <YearDropDown />
+            <MonthDropDown />
           </div>
           <div class="form-element">
             <input

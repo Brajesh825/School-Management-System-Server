@@ -4,7 +4,17 @@ const orderService = new OrderService();
 class OrderController {
   constructor() {}
 
-  getOrders = async () => {};
+  getOrders = async (req, res) => {
+    try {
+      let orders = await orderService
+        .getAllOrders()
+      console.log(orders);
+      res.status(200).json(orders);
+    } catch (error) {
+      console.log(error);
+      res.status(200).json([]);
+    }
+  };
 
   getMyOrder = async () => {};
 

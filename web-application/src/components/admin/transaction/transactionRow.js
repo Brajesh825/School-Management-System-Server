@@ -1,35 +1,30 @@
-const TransactionRow = ({ transaction, id }) => {
+const TransactionRow = ({ transaction, sno }) => {
+  console.log(transaction);
+
   let {
     _id,
     studentID,
     class: currClass,
     year,
     month,
-    phone,
-    email,
-    amount,
-    transactionType,
-    name,
+    modeOfTransaction,
+    studentName,
     transactionID,
+    totalAmount,
+    orderNumber,
   } = transaction;
 
-  if (transactionType.toLowerCase() == "cash") {
-    transactionID = "NA";
-  }
-  if (!name) {
-    name = "testing";
-  }
-
   return (
-    <tr id={studentID}>
-      <td>{id}</td>
+    <tr id={_id}>
+      <td>{sno}</td>
       <td> {studentID} </td>
-      <td> {name} </td>
+      <td> {studentName} </td>
       <td> {transactionID} </td>
+      <td> {orderNumber} </td>
       <td> {month} </td>
       <td> {year} </td>
-      <td> {transactionType} </td>
-      <td> {amount} </td>
+      <td> {modeOfTransaction} </td>
+      <td> {totalAmount} </td>
     </tr>
   );
 };

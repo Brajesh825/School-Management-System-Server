@@ -4,23 +4,6 @@ import { Class } from "./class.js";
 
 const orderSchema = mongoose.Schema(
   {
-    studentID: {
-      type: mongoose.Types.ObjectId,
-      ref: Student,
-    },
-    transactionID: {
-      type: String,
-    },
-    status: {
-      type: String,
-      enum: ["Pending", "Completed", "Failed"],
-    },
-    orderNumber: {
-      type: Number,
-    },
-    orderName: {
-      type: String,
-    },
     classId: {
       type: mongoose.Types.ObjectId,
       ref: Class,
@@ -30,6 +13,27 @@ const orderSchema = mongoose.Schema(
     },
     year: {
       type: Number,
+    },
+    studentID: {
+      type: mongoose.Types.ObjectId,
+      ref: Student,
+      required : true
+    },
+    transactionID: {
+      type: String,
+    },
+    status: {
+      type: String,
+      enum: ["Pending", "Completed", "Failed"],
+    },
+    orderNumber: {
+      type: String,
+      maxLength: 16,
+      minLength: 16,
+      unique: true,
+    },
+    orderName: {
+      type: String,
     },
     hostelFee: {
       type: Number,

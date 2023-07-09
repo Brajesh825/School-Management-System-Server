@@ -5,7 +5,7 @@ const TransactionListView = ({ filteredTransactions }) => {
   return (
     <>
       {filteredTransactions.map((transaction, index) => (
-        <TransactionRow key={no++} id={no++} transaction={transaction} />
+        <TransactionRow key={transaction._id} sno={no++} transaction={transaction} />
       ))}
     </>
   );

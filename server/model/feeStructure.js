@@ -15,7 +15,7 @@ const feeStructureSchema = mongoose.Schema(
       type: Number,
     },
     month: {
-      type: "String",
+      type: String,
       enum: [
         "January",
         "February",

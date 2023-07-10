@@ -215,7 +215,34 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(228, 208, 208);
+  border-bottom: 1px solid rgb(189, 165, 165);
+}
+
+.dashboard-nav-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  background-color: #f5f6f8;
+  border: 1px solid pink;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.user-welcome {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-welcome .name {
+  font-size: 1rem;
+  color: #4f15f0;
+}
+
+.user-welcome ._id {
+  font-size: 0.75rem;
+  color: rgb(183, 130, 130);
 }
 
 .dashboard-welcome {
@@ -232,10 +259,8 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.logout-btn a {
   color: aliceblue;
+  font-size: 18px;
 }
 
 .dashboard-main {

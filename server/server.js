@@ -1,9 +1,12 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import { Connect } from "./db/connect.js";
 
+
 const app = express();
+
 
 // import routes
 import { classRoutes } from "./routes/classRoute.js";
@@ -21,6 +24,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cookieParser())
 
 app.use("/api/v1", classRoutes);
 app.use("/api/v1", studentRoutes);

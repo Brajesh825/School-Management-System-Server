@@ -22,6 +22,9 @@ import TransactionList from "./components/admin/transaction/transactionList";
 import AddClass from "./components/admin/class/addClass";
 import AddStudent from "./components/admin/student/addStudent";
 import AddTransaction from "./components/admin/transaction/addTransaction";
+import StudentDashboard from "./components/student/dashboard/dashboard";
+import StudentLoginForm from "./components/student/login/studentLoginForm";
+import AdminLoginForm from "./components/admin/login/adminLoginForm";
 
 const router = createBrowserRouter([
   {
@@ -31,9 +34,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <StudentDashboard />,
       },
       {
         path: "dashboard",
+        element: <StudentDashboard />,
       },
       {
         path: "billing",
@@ -42,6 +47,11 @@ const router = createBrowserRouter([
         path: "setting",
       },
     ],
+  },
+  {
+    path: "/student/login",
+    errorElement: <Error />,
+    element: <StudentLoginForm />,
   },
   {
     path: "/admin",
@@ -99,12 +109,17 @@ const router = createBrowserRouter([
       },
       {
         path: "fee",
-        element: <FeeStructure/>
+        element: <FeeStructure />,
       },
       // {
       //   path: "setting",
       // },
     ],
+  },
+  {
+    path: "/admin/login",
+    errorElement: <Error />,
+    element: <AdminLoginForm />,
   },
 ]);
 

@@ -7,7 +7,7 @@ const authController = new AuthController();
 const authRoute = express.Router();
 
 // Checking the User
-authRoute.post("/student/verify", userVerification("student"));
+authRoute.post("/student/me", userVerification("student"));
 
 
 // Login As Student

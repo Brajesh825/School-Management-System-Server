@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 config();
 
-console.log(process.env.TOKEN_KEY);
-
 const userVerification = (scope) => {
   return (req, res) => {
     const token = req.cookies.token;
@@ -17,17 +15,21 @@ const userVerification = (scope) => {
         return res.json({ status: false });
       } else {
         if (scope == "student") {
+          let { payload } = data;
+          if (payload.role != "Student") {
+            return res.json({ status: false });
+          }
+          const student = await Student.findById(payload._id);
+          if (student)
+            return res.json({
+              status: true,
+              studentID : student.studentID,
+              user: student.name,
+              role: "Student",
+            });
+          else return res.json({ status: false });
         } else if (scope == "authority") {
         }
-
-        const student = await Student.findById(data.id);
-        if (student)
-          return res.json({
-            status: true,
-            user: student.name,
-            role: "Student",
-          });
-        else return res.json({ status: false });
       }
     });
   };

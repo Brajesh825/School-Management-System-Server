@@ -18,7 +18,9 @@ class StudentController {
       data.name.substr(0, 4) + dateParts[0] + dateParts[1] + dateParts[2];
     data.studentID = studentID;
 
+    // Adding Student
     let student = await studentService.addStudent(data);
+    // Updating Number Of Student
     if (!student) {
       return res.status(400).json({
         success: "false",

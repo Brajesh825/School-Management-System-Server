@@ -1,14 +1,22 @@
 import express from "express";
+import { AuthController } from "../controllers/authController.js";
+import { userVerification } from "../middleware/auth.js";
 
-const router = express.Router();
+const authController = new AuthController();
+
+const authRoute = express.Router();
+
+// Checking the User
+authRoute.post("/student/verify", userVerification("student"));
+
 
 // Login As Student
-router.post("/api/v1/login/student");
+
+authRoute.post("/student/login", authController.loginAsStudent);
 
 // Change Password
 
 // Login As Authority
-router.post("/api/v1/login/authority");
+authRoute.post("/authority/login", authController.loginAsAuthority);
 
-// Register As Authority
-router.post("/api/v1/register/authority");
+export { authRoute };

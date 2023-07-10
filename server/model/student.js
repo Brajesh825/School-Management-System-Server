@@ -48,6 +48,12 @@ const studentSchema = mongoose.Schema(
 studentSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
+
+studentSchema.pre("save", async function (){
+  this.password = await bcrypt.hash(this.password, 12);
+})
+
+
 const Student = mongoose.model("students", studentSchema);
 
 export { Student };

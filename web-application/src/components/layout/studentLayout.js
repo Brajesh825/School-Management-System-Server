@@ -12,7 +12,10 @@ import "react-toastify/dist/ReactToastify.css";
 import StudentSidebar from "../sidebar/studentSidebar";
 import Navbar from "../navbar/navbar";
 
+import { useDispatch } from "react-redux";
+
 const StudentLayout = () => {
+  const dispatch = useDispatch();
   let params = useParams();
   const navigate = useNavigate();
 
@@ -34,7 +37,9 @@ const StudentLayout = () => {
       );
       const { status, user, studentID } = data;
       setUsername(user);
-      setStudentID(studentID)
+      setStudentID(studentID);
+      dispatch({ type: "studentID/insert", payload: studentID });
+
       return status
         ? toast(`Welcome back ! ${studentID} or should i say ${user}`, {
             position: "top-right",

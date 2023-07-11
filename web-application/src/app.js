@@ -25,6 +25,7 @@ import AddTransaction from "./components/admin/transaction/addTransaction";
 import StudentDashboard from "./components/student/dashboard/dashboard";
 import StudentLoginForm from "./components/student/login/studentLoginForm";
 import AdminLoginForm from "./components/admin/login/adminLoginForm";
+import StudentTransaction from "./components/student/billing/transaction";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "billing",
+        element: <StudentTransaction />,
       },
       {
         path: "setting",

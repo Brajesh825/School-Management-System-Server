@@ -1,3 +1,6 @@
+import { Class } from "../model/class.js";
+import { FeeStructure } from "../model/feeStructure.js";
+import { Student } from "../model/student.js";
 import { StudentService } from "../services/studentService.js";
 
 const studentService = new StudentService();
@@ -37,6 +40,37 @@ class StudentController {
   getAllStudent = async (req, res) => {
     let students = await studentService.getAllStudent();
     res.status(200).json(students);
+  };
+
+  getMyPendingBills = async (req, res) => {
+    let studentID = req.studentID;
+    // fetch student
+    let student = await Student.findById(studentID.toString());
+    // Fetch Classes
+    let myClass = await Class.findOne({
+      className: student.class,
+    });
+    let classId = myClass._id;
+    // Get All Fee Structures
+    let feeStructures = await FeeStructure.find({ class: classId });
+
+    let yearMapping = {};
+
+    for (const feeStructure of feeStructures) {
+      let { year, month } = feeStructure;
+      if (!yearMapping[year]) {
+        yearMapping[year] = [month];
+      } else {
+        yearMapping[year].push(month);
+      }
+    }
+    res.status(200).json({
+      yearMapping,
+      class: {
+        className: myClass.className,
+        _id: classId,
+      },
+    });
   };
 }
 

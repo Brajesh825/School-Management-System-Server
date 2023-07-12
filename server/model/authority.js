@@ -10,13 +10,13 @@ const adminSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    mobileNUmber: {
+    mobile: {
       type: String,
       required: true,
+      unique: true,
     },
     image: {
       type: String,
-      required: true,
     },
     password: {
       type: String,
@@ -34,6 +34,12 @@ const adminSchema = mongoose.Schema(
 adminSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
+adminSchema.pre("save", async function (){
+  console.log("encrypt");
+  this.password = await bcrypt.hash(this.password, 12);
+})
+
+
 const Authority = mongoose.model("authority", adminSchema);
 
 export { Authority };

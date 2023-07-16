@@ -12,6 +12,7 @@ class AuthorityController {
 
       res.status(200).json({ message: "Added AUthority Successfully" });
     } catch (error) {
+      console.log(error);
       return res.status(400).json({ message: "Something Went Wrong" });
     }
   };

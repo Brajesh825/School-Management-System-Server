@@ -34,10 +34,11 @@ const adminSchema = mongoose.Schema(
 adminSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
-adminSchema.pre("save", async function (){
-  this.password = await bcrypt.hash(this.password, 12);
-})
-
+adminSchema.pre("save", async function () {
+  if ((this.isModified("password"))) {
+    this.password = await bcrypt.hash(this.password, 12);
+  }
+});
 
 const Authority = mongoose.model("authority", adminSchema);
 

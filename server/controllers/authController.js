@@ -10,8 +10,6 @@ class AuthController {
         return res.json({ message: "All fields are required" });
       }
       const authority = await Authority.findOne({ mobile });
-      console.log("authority");
-      console.log(authority);
       if (!authority) {
         return res.json({ message: "Incorrect password or mobile" });
       }

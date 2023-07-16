@@ -22,6 +22,7 @@ const userVerification = (scope) => {
             return res.json({ status: false });
           }
           const student = await Student.findById(payload._id);
+          console.log(student);
           if (student)
             return res.json({
               status: true,
@@ -36,11 +37,16 @@ const userVerification = (scope) => {
             return res.json({ status: false });
           }
           const authority = await Authority.findById(payload._id);
+          console.log(authority);
+
           if (authority)
             return res.json({
               status: true,
               name: authority.name,
               role: authority.role,
+              profilePic: authority?.image,
+              email: authority.email,
+              mobile: authority.mobile,
             });
           else return res.json({ status: false });
         }

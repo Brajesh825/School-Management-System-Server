@@ -22,7 +22,7 @@ authRoute.post("/student/login", authController.loginAsStudent);
 // Create an Authority
 authRoute.post(
   "/authority/",
-  Authenticate("authority"),
+  // Authenticate("authority"),
   authorityController.addAuthority
 );
 

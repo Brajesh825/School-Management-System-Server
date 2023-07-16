@@ -78,21 +78,21 @@ const StudentLoginForm = () => {
     <div className="container">
       <ToastContainer />
 
-      <div class="auth">
-        <div class="auth-left-container">
-          <div class="auth-left">
-            <div class="greeting-container">
+      <div className="auth">
+        <div className="auth-left-container">
+          <div className="auth-left">
+            <div className="greeting-container">
               <h2 id="greetings">Welcome To P.N Academy</h2>
-              <div class="big-logo">
+              <div className="big-logo">
                 <img src="/images/school-logo.jpeg" alt=""></img>
               </div>
             </div>
           </div>
         </div>
-        <div class="auth-right-container">
-          <div class="auth-right">
+        <div className="auth-right-container">
+          <div className="auth-right">
             <h4 id="student-signIn">Sign In As A Student</h4>
-            <form action="post" onSubmit={handleSubmit} class="form login-form">
+            <form action="post" onSubmit={handleSubmit} className="form login-form">
               <input
                 type="text"
                 name="studentID"
@@ -107,7 +107,7 @@ const StudentLoginForm = () => {
                 value={password}
                 onChange={handleOnChange}
               ></input>
-              <button type="submit" class="btn lgn-btn">
+              <button type="submit" className="btn lgn-btn">
                 Login
               </button>
             </form>

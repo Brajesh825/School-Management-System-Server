@@ -26,6 +26,7 @@ import StudentDashboard from "./components/student/dashboard/dashboard";
 import StudentLoginForm from "./components/student/login/studentLoginForm";
 import AdminLoginForm from "./components/admin/login/adminLoginForm";
 import StudentTransaction from "./components/student/billing/transaction";
+import AdminSettings from "./components/admin/setting/setting";
 
 const router = createBrowserRouter([
   {
@@ -113,9 +114,10 @@ const router = createBrowserRouter([
         path: "fee",
         element: <FeeStructure />,
       },
-      // {
-      //   path: "setting",
-      // },
+      {
+        path: "setting",
+        element: <AdminSettings />,
+      },
     ],
   },
   {

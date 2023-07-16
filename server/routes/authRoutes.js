@@ -1,12 +1,16 @@
 import express from "express";
+import multer from "multer";
 import { AuthController } from "../controllers/authController.js";
 import { AuthorityController } from "../controllers/authorityController.js";
 import { userVerification } from "../middleware/auth.js";
+import { Authenticate } from "../middleware/authMiddleWare.js";
 
 const authController = new AuthController();
 const authorityController = new AuthorityController();
 
 const authRoute = express.Router();
+
+const upload = multer({ dest: "uploads/" });
 
 // Fetching the User
 authRoute.post("/student/me", userVerification("student"));
@@ -16,9 +20,24 @@ authRoute.post("/student/me", userVerification("student"));
 authRoute.post("/student/login", authController.loginAsStudent);
 
 // Create an Authority
-authRoute.post("/authority/", authorityController.addAuthority);
+authRoute.post(
+  "/authority/",
+  Authenticate("authority"),
+  authorityController.addAuthority
+);
+
+// Update the authority profile
+authRoute.patch(
+  "/authority/",
+  upload.single("file"),
+  Authenticate("authority"),
+  authorityController.updateProfile
+);
 
 // Login As Authority
 authRoute.post("/authority/login", authController.loginAsAuthority);
+
+// Fetching the authority
+authRoute.post("/authority/me", userVerification("authority"));
 
 export { authRoute };

@@ -25,6 +25,9 @@ const Authenticate = (scope) => {
             next();
           } else return res.json({ status: false });
         } else if (scope == "authority") {
+          console.log(data);
+          req.authorityID = data.payload._id;
+          next();
         }
       }
     });

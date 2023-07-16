@@ -35,7 +35,6 @@ adminSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 adminSchema.pre("save", async function (){
-  console.log("encrypt");
   this.password = await bcrypt.hash(this.password, 12);
 })
 

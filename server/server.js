@@ -4,9 +4,7 @@ import cookieParser from "cookie-parser";
 
 import { Connect } from "./db/connect.js";
 
-
 const app = express();
-
 
 // import routes
 import { classRoutes } from "./routes/classRoute.js";
@@ -19,12 +17,12 @@ import { authRoute } from "./routes/authRoutes.js";
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
 );
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use("/api/v1", classRoutes);
 app.use("/api/v1", studentRoutes);

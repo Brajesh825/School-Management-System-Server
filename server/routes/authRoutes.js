@@ -22,7 +22,7 @@ authRoute.post("/student/login", authController.loginAsStudent);
 // Create an Authority
 authRoute.post(
   "/authority/",
-  // Authenticate("authority"),
+  Authenticate("authority"),
   authorityController.addAuthority
 );
 
@@ -39,5 +39,11 @@ authRoute.post("/authority/login", authController.loginAsAuthority);
 
 // Fetching the authority
 authRoute.post("/authority/me", userVerification("authority"));
+
+authRoute.patch(
+  "/authority/changePassword",
+  Authenticate("authority"),
+  authorityController.changePassword
+);
 
 export { authRoute };

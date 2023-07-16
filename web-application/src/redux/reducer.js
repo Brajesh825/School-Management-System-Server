@@ -1,10 +1,14 @@
 import { createStore } from "redux";
 
-function userReducer(state = { studentID: "" }, action) {
+function userReducer(state = { user: {} }, action) {
   switch (action.type) {
-    case "studentID/insert":
-      return { studentID: action.payload };
-    case "userName/insert":
+    case "admin/add":
+      state.user.name = action.payload.name;
+      state.user.role = action.payload.role;
+      state.user.profilePic = action.payload.profilePic;
+      state.user.email = action.payload.email;
+      state.user.mobile = action.payload.mobile;
+      return { state };
     default:
       return state;
   }

@@ -46,6 +46,39 @@ class AuthorityController {
       res.status(400).json({ message: "Something went wrong" });
     }
   };
+
+  changePassword = async (req, res) => {
+    try {
+      const authorityID = req.authorityID;
+      const { password, newPassword, confirmPassword } = req.body;
+
+      console.log(password);
+      console.log(newPassword);
+      console.log(confirmPassword);
+
+
+      const authority = await Authority.findById(authorityID);
+      const auth = await authority.matchPassword(password, authority.password);
+      if (!auth) {
+        return res.status(400).json({ message: "Incorrect password" });
+      }
+      if (newPassword != confirmPassword) {
+        return res.status(400).json({
+          message: "New Password and confirm new password must be same",
+        });
+      }
+      authority.password = newPassword;
+      await authority.save();
+
+
+      res.status(200).json({
+        message: "Password Successfully Changed",
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: "Something Went Wrong" });
+    }
+  };
 }
 
 export { AuthorityController };

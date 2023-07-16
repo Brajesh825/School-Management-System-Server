@@ -18,10 +18,7 @@ const AdminLayout = () => {
   const dispatch = useDispatch();
   let params = useParams();
   const navigate = useNavigate();
-
   const [cookies, removeCookie] = useCookies([]);
-  const [username, setUsername] = useState("");
-  const [userRole, setUserRole] = useState("");
 
   // Handling Login Logics
 
@@ -36,17 +33,17 @@ const AdminLayout = () => {
         { withCredentials: true }
       );
       console.log(data);
-      const { status, name, role } = data;
-      setUsername(name);
-      setUserRole(role);
-      dispatch({ type: "userName/insert", payload: name });
+      const { status, name } = data;
 
+      console.log(data);
+
+      dispatch({ type: "admin/add", payload: data });
       return status
         ? toast(`Welcome back ! ${name}`, {
             position: "top-right",
           })
         : removeCookie("token");
-       navigate("/admin/login")
+      navigate("/admin/login");
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
@@ -62,7 +59,7 @@ const AdminLayout = () => {
         <div className="wrapper">
           <AdminSidebar />
           <div className="main">
-            <Navbar user={username} studentID={userRole} logout={Logout} />
+            <Navbar logout={Logout} />
             <Outlet />
           </div>
         </div>

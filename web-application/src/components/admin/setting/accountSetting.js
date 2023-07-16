@@ -1,14 +1,33 @@
 import React from "react";
 import axios from "axios";
+import { useEffect } from "react";
 
 import { useState } from "react";
 
 const AccountSetting = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [profile, setProfile] = useState("/icons/uploadPhoto.svg");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.post(
+        "http://localhost:4000/api/v1/authority/me",
+        {},
+        { withCredentials: true }
+      );
+      let { name, profilePic, email, mobile } = data;
+      setName(name);
+      setEmail(email);
+      setMobile(mobile);
+      if (profilePic) {
+        setProfile(profilePic);
+      }
+    };
+    fetchData();
+  }, []);
 
   function handleFileChange(event) {
     setSelectedFile(event.target.files[0]);

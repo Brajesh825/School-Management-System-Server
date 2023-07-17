@@ -6,9 +6,7 @@ class OrderController {
 
   getOrders = async (req, res) => {
     try {
-      let orders = await orderService
-        .getAllOrders()
-      console.log(orders);
+      let orders = await orderService.getAllOrders();
       res.status(200).json(orders);
     } catch (error) {
       console.log(error);
@@ -16,7 +14,15 @@ class OrderController {
     }
   };
 
-  getMyOrder = async () => {};
+  getMyOrders = async (req,res) => {
+    let studentID = req.studentID
+    let orders = await orderService.getOneUserAllOrder(studentID)
+    res.status(200).json(orders);
+  };
+
+  getMyPendingOrders = async (req,res) => {
+    
+  }
 
   addOrder = async (req, res) => {
     let [status, data] = await orderService.addOrder(req.body);

@@ -1,4 +1,5 @@
 import { Order } from "../model/order.js";
+import { ObjectId } from "mongoose";
 import { Student } from "../model/student.js";
 import { FeeStructureService } from "./FeeStructureService.js";
 const feeStructureService = new FeeStructureService();
@@ -90,6 +91,17 @@ class OrderService {
 
   getAllOrders = async () => {
     let orders = await Order.find({}).populate("classId").populate("studentID");
+    for (const order of orders) {
+      order.studentID.password = "";
+    }
+
+    return orders;
+  };
+
+  getOneUserAllOrder = async (studentID) => {
+    let orders = await Order.find({ studentID })
+      .populate("classId")
+      .populate("studentID");
     for (const order of orders) {
       order.studentID.password = "";
     }

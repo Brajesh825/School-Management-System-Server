@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const TransactionRow = ({ transaction }) => {
+  console.log(transaction);
+
+  return (
+    <tr id={transaction.studentID._id}>
+      <td>{transaction.studentID.name}</td>
+      <td> {transaction.studentID.studentID} </td>
+      <td> {transaction.classId.className} </td>
+      <td> {transaction.transactionID} </td>
+      <td> {transaction.month} </td>
+      <td> {transaction.year} </td>
+      <td> {transaction.modeOfTransaction} </td>
+      <td> {transaction.totalAmount} </td>
+    </tr>
+  );
+};
+
+const TransactionList = ({ transactionList }) => {
+  let no = 0;
+  return (
+    <>
+      {transactionList.map((transaction, index) => (
+        <TransactionRow transaction={transaction} />
+      ))}
+    </>
+  );
+};
 
 const AllTransactions = () => {
+  const [transactionList, setTransactionList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/v1/student/bill", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        let data = res.data;
+        console.log(data);
+        setTransactionList(data);
+      });
+  }, []);
+
   return (
     <div className="transaction-list">
       <div className="transaction-table">
@@ -18,16 +61,7 @@ const AllTransactions = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Brajesh</td>
-              <td>19CSE10</td>
-              <td>5</td>
-              <td>NA</td>
-              <td>January</td>
-              <td>2023</td>
-              <td>Offline</td>
-              <td>500</td>
-            </tr>
+            <TransactionList transactionList={transactionList} />
           </tbody>
         </table>
       </div>

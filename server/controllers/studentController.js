@@ -80,7 +80,6 @@ class StudentController {
       },
     });
   };
-
   getMyBill = async (req, res) => {
     let { class: className, year, month } = req.body;
 
@@ -96,7 +95,6 @@ class StudentController {
       feeStructure,
     });
   };
-
   updateProfile = async (req, res) => {
     try {
       const studentID = req.studentID;

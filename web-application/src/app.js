@@ -27,6 +27,7 @@ import StudentLoginForm from "./components/student/login/studentLoginForm";
 import AdminLoginForm from "./components/admin/login/adminLoginForm";
 import StudentTransaction from "./components/student/billing/transaction";
 import AdminSettings from "./components/admin/setting/setting";
+import StudentSettings from "./components/student/setting/setting";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "setting",
+        element: <StudentSettings/>
       },
     ],
   },

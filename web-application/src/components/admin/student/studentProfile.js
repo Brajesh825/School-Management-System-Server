@@ -12,7 +12,7 @@ const StudentProfile = ({ student }) => {
   let age = calculate_age(dob);
   let about = student.about || "no content";
   let name = student.name;
-  let avatar = student.avatar || "";
+  let avatar = student.image || "";
   let sclass = student.class;
   let sID = student.studentID;
 

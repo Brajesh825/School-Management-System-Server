@@ -11,7 +11,9 @@ const Student = () => {
     // Fetch All Class
     fetch("http://localhost:4000/api/v1/student")
       .then((myClass) => myClass.json())
-      .then((data) => setStudent(data));
+      .then((data) => {
+        setStudent(data);
+      });
   }, []);
 
   const addStudent = async (data) => {

@@ -36,9 +36,7 @@ const StudentLayout = () => {
         { withCredentials: true }
       );
       const { status, user, studentID } = data;
-      setUsername(user);
-      setStudentID(studentID);
-      dispatch({ type: "studentID/insert", payload: studentID });
+      dispatch({ type: "student/add", payload: data });
 
       return status
         ? toast(`Welcome back ! ${studentID} or should i say ${user}`, {
@@ -61,7 +59,7 @@ const StudentLayout = () => {
         <div className="wrapper">
           <StudentSidebar />
           <div className="main">
-            <Navbar user={username} studentID={studentID} logout={Logout} />
+            <Navbar logout={Logout} />
             <Outlet />
           </div>
         </div>

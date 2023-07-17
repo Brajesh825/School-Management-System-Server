@@ -26,9 +26,12 @@ const userVerification = (scope) => {
           if (student)
             return res.json({
               status: true,
-              studentID: student.studentID,
-              user: student.name,
+              name: student.name,
               role: "Student",
+              studentID: student.studentID,
+              email: student.email,
+              profilePic: student?.image,
+              mobile: student.mobile,
             });
           else return res.json({ status: false });
         } else if (scope == "authority") {

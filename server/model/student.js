@@ -40,6 +40,12 @@ const studentSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    image: {
+      type: String,
+    },
+    mobile: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -49,10 +55,9 @@ studentSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-studentSchema.pre("save", async function (){
+studentSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, 12);
-})
-
+});
 
 const Student = mongoose.model("students", studentSchema);
 

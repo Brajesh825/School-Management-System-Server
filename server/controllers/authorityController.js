@@ -32,7 +32,6 @@ class AuthorityController {
       const publicUrl = result.secure_url;
 
       let authority = await Authority.findById(authorityID);
-      console.log(authority);
       authority.name = name;
       authority.email = email;
       authority.mobile = mobile;
@@ -46,7 +45,6 @@ class AuthorityController {
       res.status(400).json({ message: "Something went wrong" });
     }
   };
-
   changePassword = async (req, res) => {
     try {
       const authorityID = req.authorityID;
@@ -55,7 +53,6 @@ class AuthorityController {
       console.log(password);
       console.log(newPassword);
       console.log(confirmPassword);
-
 
       const authority = await Authority.findById(authorityID);
       const auth = await authority.matchPassword(password, authority.password);
@@ -69,7 +66,6 @@ class AuthorityController {
       }
       authority.password = newPassword;
       await authority.save();
-
 
       res.status(200).json({
         message: "Password Successfully Changed",

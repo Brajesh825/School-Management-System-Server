@@ -4,9 +4,11 @@ import { AuthController } from "../controllers/authController.js";
 import { AuthorityController } from "../controllers/authorityController.js";
 import { userVerification } from "../middleware/auth.js";
 import { Authenticate } from "../middleware/authMiddleWare.js";
+import { StudentController } from "../controllers/studentController.js";
 
 const authController = new AuthController();
 const authorityController = new AuthorityController();
+const studentController = new StudentController();
 
 const authRoute = express.Router();
 
@@ -32,6 +34,14 @@ authRoute.patch(
   upload.single("file"),
   Authenticate("authority"),
   authorityController.updateProfile
+);
+
+// Update the student profile
+authRoute.patch(
+  "/student/",
+  upload.single("file"),
+  Authenticate("student"),
+  studentController.updateProfile
 );
 
 // Login As Authority

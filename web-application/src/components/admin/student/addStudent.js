@@ -17,7 +17,6 @@ const AddStudent = (data) => {
     formData.forEach(function (value, key) {
       object[key] = value;
     });
-    object.noOfStudents = 0;
     let response = await addStudent(object);
     if (response.success == "true") {
       navigate("/admin/student");

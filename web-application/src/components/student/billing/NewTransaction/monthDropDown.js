@@ -1,12 +1,6 @@
 import Select from "react-select";
 
-const MonthDropDown = ({ monthYearMap, setActiveMonth, activeYear }) => {
-  console.log(monthYearMap, activeYear);
-
-  const handleChange = (e) => {
-    setActiveMonth(e.value);
-  };
-
+const MonthDropDown = ({ monthYearMap, handleMonthChange, activeYear }) => {
   if (!activeYear) {
     return <></>;
   }
@@ -21,7 +15,7 @@ const MonthDropDown = ({ monthYearMap, setActiveMonth, activeYear }) => {
     });
   }
 
-  return <Select onChange={handleChange} name="month" options={months} />;
+  return <Select onChange={handleMonthChange} name="month" options={months} />;
 };
 
 export default MonthDropDown;

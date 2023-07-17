@@ -1,9 +1,6 @@
 import Select from "react-select";
 
-const YearDropDown = ({ setActiveYear, monthYearMap }) => {
-  const handleChange = (e) => {
-    setActiveYear(e.value);
-  };
+const YearDropDown = ({ handleYearChange, monthYearMap }) => {
   const years = [];
   for (const key in monthYearMap) {
     years.push({
@@ -12,8 +9,7 @@ const YearDropDown = ({ setActiveYear, monthYearMap }) => {
     });
   }
 
-
-  return <Select onChange={handleChange} name="year" options={years} />;
+  return <Select onChange={handleYearChange} name="year" options={years} />;
 };
 
 export default YearDropDown;

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import { Authority } from "./authority.js";
+import { Class } from "./class.js";
 
 const studentSchema = mongoose.Schema(
   {
@@ -30,6 +31,7 @@ const studentSchema = mongoose.Schema(
     class: {
       type: String,
       required: true,
+      ref: Class,
     },
     gender: {
       type: String,
@@ -56,7 +58,9 @@ studentSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 studentSchema.pre("save", async function () {
-  this.password = await bcrypt.hash(this.password, 12);
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 12);
+  }
 });
 
 const Student = mongoose.model("students", studentSchema);

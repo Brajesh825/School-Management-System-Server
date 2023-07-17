@@ -20,4 +20,10 @@ studentRoutes.post(
   studentController.getMyPendingBills
 );
 
+studentRoutes.post(
+  "/student/bill",
+  Authenticate("student"),
+  studentController.getMyBill
+);
+
 export { studentRoutes };

@@ -25,6 +25,7 @@ const Student = () => {
       },
     });
     let student = await response.json();
+    console.log(student);
 
     if (student.success == "true") {
       setStudent((previousState) => {

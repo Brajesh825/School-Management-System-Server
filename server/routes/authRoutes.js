@@ -56,4 +56,10 @@ authRoute.patch(
   authorityController.changePassword
 );
 
+authRoute.patch(
+  "/student/changePassword",
+  Authenticate("student"),
+  studentController.changePassword
+);
+
 export { authRoute };

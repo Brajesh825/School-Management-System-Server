@@ -37,7 +37,7 @@ const ClassDropDown = () => {
       cacheOptions={items}
       loadOptions={fetchClass}
       getOptionLabel={(e) => e.className}
-      getOptionValue={(e) => e.className}
+      getOptionValue={(e) => e._id}
       value={selectedValue}
       defaultOptions={items}
       onInputChange={handleInputChange}

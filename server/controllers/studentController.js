@@ -24,6 +24,12 @@ class StudentController {
 
     // Adding Student
     let student = await studentService.addStudent(data);
+
+    let myClass = await Class.findById(data.class);
+    myClass.noOfStudents = myClass.noOfStudents + 1;
+    student.class = myClass.className;
+    await myClass.save();
+
     // Updating Number Of Student
     if (!student) {
       return res.status(400).json({
@@ -46,15 +52,13 @@ class StudentController {
   getMyPendingBills = async (req, res) => {
     let studentID = req.studentID;
     // fetch student
-    let student = await Student.findById(studentID.toString());
+    let student = await Student.findById(studentID.toString()).populate(
+      "class"
+    );
     // Fetch Classes
-    let myClass = await Class.findOne({
-      className: student.class,
-    });
-    let classId = myClass._id;
+    let classId = student.class;
     // Get All Fee Structures
     let feeStructures = await FeeStructure.find({ class: classId });
-
     let yearMapping = {};
 
     for (const feeStructure of feeStructures) {
@@ -68,10 +72,14 @@ class StudentController {
     res.status(200).json({
       yearMapping,
       class: {
-        className: myClass.className,
-        _id: classId,
+        className: student.class.className,
+        _id: student.class._id,
       },
     });
+  };
+
+  getMyBill = async (req, res) => {
+    console.log(req.body);
   };
 
   updateProfile = async (req, res) => {
@@ -103,6 +111,32 @@ class StudentController {
     } catch (error) {
       console.log(error);
       res.status(400).json({ message: "Something went wrong" });
+    }
+  };
+  changePassword = async (req, res) => {
+    try {
+      const studentID = req.studentID;
+      const { password, newPassword, confirmPassword } = req.body;
+
+      const authority = await Student.findById(studentID);
+      const auth = await authority.matchPassword(password, authority.password);
+      if (!auth) {
+        return res.status(400).json({ message: "Incorrect password" });
+      }
+      if (newPassword != confirmPassword) {
+        return res.status(400).json({
+          message: "New Password and confirm new password must be same",
+        });
+      }
+      authority.password = newPassword;
+      await authority.save();
+
+      res.status(200).json({
+        message: "Password Successfully Changed",
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: "Something Went Wrong" });
     }
   };
 }

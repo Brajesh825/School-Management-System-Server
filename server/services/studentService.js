@@ -15,8 +15,16 @@ class StudentService {
   };
 
   getAllStudent = async () => {
-    let student = await Student.find({});
-    return student;
+    let students = [];
+    let student = await Student.find({}).populate("class");
+    student.forEach((element) => {
+      let curr = {};
+      Object.assign(curr, element._doc);
+      curr.class = element.class.className;
+      students.push(curr);
+    });
+
+    return students;
   };
 }
 

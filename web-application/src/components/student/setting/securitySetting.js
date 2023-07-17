@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SecuritySetting = () => {
-  const navidate = useNavigate()
+  const navidate = useNavigate();
 
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -47,7 +47,7 @@ const SecuritySetting = () => {
       setErrorMessage(undefined);
       setSuccessMessage(null);
       axios
-        .patch("http://localhost:4000/api/v1/authority/changePassword", data, {
+        .patch("http://localhost:4000/api/v1/student/changePassword", data, {
           withCredentials: true,
         })
         .then((response) => {
@@ -61,7 +61,7 @@ const SecuritySetting = () => {
               setSuccessMessage(data.message);
 
               setTimeout(() => {
-                navidate("/admin/setting")
+                navidate("/admin/setting");
               }, 2000);
 
               break;

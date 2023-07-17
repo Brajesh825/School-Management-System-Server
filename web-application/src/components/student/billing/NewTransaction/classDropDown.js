@@ -1,10 +1,6 @@
 import Select from "react-select";
 
-const ClassDropDown = ({ classList, setClass }) => {
-  const handleChange = (e) => {
-    setClass(e.value);
-  };
-
+const ClassDropDown = ({ classList, handleClassChange }) => {
   const classes = [];
   if (classList) {
     classes.push({
@@ -12,8 +8,7 @@ const ClassDropDown = ({ classList, setClass }) => {
       label: classList.className,
     });
   }
-
-  return <Select onChange={handleChange} name="class" options={classes} />;
+  return <Select onChange={handleClassChange} name="class" options={classes} />;
 };
 
 export default ClassDropDown;

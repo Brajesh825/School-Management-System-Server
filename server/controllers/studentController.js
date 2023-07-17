@@ -4,6 +4,9 @@ import { Student } from "../model/student.js";
 import { StudentService } from "../services/studentService.js";
 import { cloudinary } from "../utils/clouddinary.js";
 
+import mongoose from "mongoose";
+const ObjectId = mongoose.Types.ObjectId;
+
 const studentService = new StudentService();
 
 class StudentController {
@@ -79,7 +82,19 @@ class StudentController {
   };
 
   getMyBill = async (req, res) => {
-    console.log(req.body);
+    let { class: className, year, month } = req.body;
+
+    const feeStructure = await FeeStructure.findOne({
+      class: new ObjectId(className),
+      year,
+      month,
+    });
+
+    console.log(feeStructure);
+
+    res.status(200).json({
+      feeStructure,
+    });
   };
 
   updateProfile = async (req, res) => {

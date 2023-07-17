@@ -15,8 +15,20 @@ const TransactionView = ({ className, year, month }) => {
       .post("http://localhost:4000/api/v1/student/bill/", data, {
         withCredentials: true,
       })
-      .then((data) => {
-        console.log(data);
+      .then((res) => {
+        switch (res.status) {
+          case 200: {
+            const feeStructure = res.data.feeStructure;
+
+            setTransactionDetails({
+              transportFee: feeStructure.transportFee,
+              tutionFee: feeStructure.tutionFee,
+              libraryFee: feeStructure.libraryFee,
+              hostelFee: feeStructure.hostelFee,
+            });
+            break;
+          }
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -25,11 +37,19 @@ const TransactionView = ({ className, year, month }) => {
   }, []);
 
   if (transactionDetails) {
+    console.log(transactionDetails);
+
+    const totalFee =
+      transactionDetails.transportFee +
+      transactionDetails.tutionFee +
+      transactionDetails.libraryFee +
+      transactionDetails.hostelFee;
+
     return (
       <div className="transaction-view">
         <div className="view-wrapper">
-          <span>Exam Fee</span>
-          <span>{transactionDetails.examFee}</span>
+          <span>Library Fee</span>
+          <span>{transactionDetails.libraryFee}</span>
         </div>
         <div className="view-wrapper">
           <span>Hostel Fee</span>
@@ -45,7 +65,7 @@ const TransactionView = ({ className, year, month }) => {
         </div>
         <div className="view-wrapper">
           <span>Total Fee</span>
-          <span>{transactionDetails.totalFee}</span>
+          <span>{totalFee}</span>
         </div>
       </div>
     );

@@ -1,4 +1,4 @@
-# SCHOOL MANAGEMENT SYSTEM VIEWS
+# SCHOOL MANAGEMENT SYSTEM Node Server
 
 ```
 PC View : Completed

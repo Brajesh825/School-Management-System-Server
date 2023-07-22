@@ -1,5 +1,6 @@
 import { Class } from "../model/class.js";
 import { FeeStructure } from "../model/feeStructure.js";
+import { Order } from "../model/order.js";
 import { Student } from "../model/student.js";
 import { StudentService } from "../services/studentService.js";
 import { cloudinary } from "../utils/clouddinary.js";
@@ -10,9 +11,9 @@ const ObjectId = mongoose.Types.ObjectId;
 const studentService = new StudentService();
 
 class StudentController {
-  constructor() {}
+  constructor() { }
 
-  uploadStudentCSV() {}
+  uploadStudentCSV() { }
 
   addStudent = async (req, res) => {
     let data = req.body;
@@ -89,8 +90,6 @@ class StudentController {
       month,
     });
 
-    console.log(feeStructure);
-
     res.status(200).json({
       feeStructure,
     });
@@ -152,6 +151,63 @@ class StudentController {
       return res.status(400).json({ message: "Something Went Wrong" });
     }
   };
+
+  getCompleteBill = async (req, res) => {
+    let studentID = req.studentID;
+
+    // fetching student
+    let student = await Student.findById(studentID.toString()).populate("class")
+
+    // fetching all fee structure
+    let feeStructures = await FeeStructure.find({ class: student.class._id })
+
+    const bills = []
+
+    for (let i = 0; i < feeStructures.length; i++) {
+      const fee = feeStructures[i]
+      let currOrder = await Order.findOne({
+        classId: student.class,
+        studentID: student._id,
+        month: fee.month,
+        year: fee.year
+      })
+      // already exist
+      if (currOrder) {
+        let bill = {}
+        bill.status = currOrder.status
+        bill.year = currOrder.year
+        bill.month = currOrder.month
+        bill.transactionDate = currOrder.createdAt
+        bill.studentID = student.studentID
+        bill.class = student.class.className
+        bill.tutionFee = fee.tutionFee
+        bill.libraryFee = fee.libraryFee
+        bill.hostelFee = fee.hostelFee
+        bill.transportFee = fee.transportFee
+        bills.push(bill)
+      } else {
+        let bill = {}
+        bill.status = "Not Started"
+        bill.year = fee.year
+        bill.month = fee.month
+        bill.transactionDate = "NA"
+        bill.studentID = student.studentID
+        bill.class = student.class.className
+        bill.tutionFee = fee.tutionFee
+        bill.libraryFee = fee.libraryFee
+        bill.hostelFee = fee.hostelFee
+        bill.transportFee = fee.transportFee
+        bills.push(bill)
+      }
+    }
+
+    res.status(200).json({
+      bills,
+    });
+
+
+
+  }
 }
 
 export { StudentController };

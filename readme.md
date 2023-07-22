@@ -6,6 +6,48 @@ Mobile View : Pending
 Tablet View : In Process
 ```
 
+## Apis
+---
+
+AUTHENTICATION
+
+    Login As Admin
+    Login As Student
+
+ADMIN
+
+    Add Admin
+    Update Admin Profile
+    Change Password
+
+CLASS
+
+    Add Class
+    Get All Class
+
+FEE STRUCTURE
+
+    Add Fee Structure
+    Get All Fee Structure
+
+ORDER
+
+    Get Orders
+    Get My Orders
+    Get My Pending Orders
+    Add Order
+
+STUDENT
+
+    upload Student csv
+    add student
+    get all student
+    get my pending bills
+    get my bill
+    update user profile
+    change user password
+
+
 ---
  [Figma Design ](https://www.figma.com/file/gXnTCizXuP6aNSyMdMrZOM/School-Management-System?type=design&node-id=0%3A1&mode=design&t=dmq6gbnuFpklanV4-1
 )

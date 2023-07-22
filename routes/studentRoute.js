@@ -36,4 +36,11 @@ studentRoutes.post(
   studentController.getMyBill
 );
 
+// Get one student complete Billing billing list
+studentRoutes.get(
+  "/student/bill/list",
+  Authenticate("student"),
+  studentController.getCompleteBill
+);
+
 export { studentRoutes };

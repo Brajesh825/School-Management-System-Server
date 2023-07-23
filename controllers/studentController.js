@@ -97,29 +97,47 @@ class StudentController {
   updateProfile = async (req, res) => {
     try {
       const studentID = req.studentID;
-      console.log(studentID);
 
-      const { file, email, mobile } = req.body;
+      const { file, email, mobile, fatherName, motherName, villageName, postName, policeStation, pinCode, district, state } = req.body;
       // Get the temporary file path
-      const filePath = req.file.path;
-
-      const result = await cloudinary.v2.uploader.upload(filePath, {
-        resource_type: "auto",
-        folder: "profiles",
-      });
-
-      const publicUrl = result.secure_url;
+      const filePath = req.file?.path;
+      let publicUrl = null;
+      if (filePath) {
+        const result = await cloudinary.v2.uploader.upload(filePath, {
+          resource_type: "auto",
+          folder: "profiles",
+        });
+        publicUrl = result.secure_url;
+      }
 
       let student = await Student.findById(studentID);
 
+      email, mobile, fatherName, motherName, villageName, postName, policeStation, pinCode, district, state
+
       student.email = email;
       student.mobile = mobile;
-      student.image = publicUrl;
+      student.fatherName = fatherName
+      student.motherName = motherName
+
+      const address = {
+        villageName,
+        postName,
+        policeStation,
+        pinCode,
+        district,
+        state
+      }
+
+      student.address = address
+
+      if (publicUrl) {
+        student.image = publicUrl;
+      }
       await student.save();
 
       res
         .status(200)
-        .json({ message: "Successfully changed profile pic", url: publicUrl });
+        .json({ message: "Successfully changed profile pic", url: student.image });
     } catch (error) {
       console.log(error);
       res.status(400).json({ message: "Something went wrong" });

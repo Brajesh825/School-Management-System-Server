@@ -32,6 +32,9 @@ const userVerification = (scope) => {
               email: student.email,
               profilePic: student?.image,
               mobile: student.mobile,
+              motherName: student.motherName,
+              fatherName: student.fatherName,
+              address : student.address
             });
           else return res.json({ status: false });
         } else if (scope == "authority") {

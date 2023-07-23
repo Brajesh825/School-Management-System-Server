@@ -48,6 +48,33 @@ const studentSchema = mongoose.Schema(
     mobile: {
       type: String,
     },
+    motherName: {
+      type: String
+    },
+    fatherName: {
+      type: String
+    },
+    address: {
+      villageName: {
+        type: String
+      },
+      postName: {
+        type: String
+      },
+      policeStation: {
+        type: String
+      },
+      pinCode: {
+        type: Number
+      },
+      district: {
+        type : String
+      },
+      state : {
+        type : String
+      }
+    }
+
   },
   {
     timestamps: true,
